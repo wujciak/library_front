@@ -1,19 +1,17 @@
 import React from 'react';
-import './LoginForm.css'
+import { Button, TextField } from '@mui/material';
+import './LoginForm.css';
+import LoginIcon from '@mui/icons-material/Login';
 
 function LoginForm() {
     return (
         <div>
             <form className="login-form" >
-                <label>
-                    Username:
-                    <input type="text" name="username" placeholder="Username" />
-                </label>
-                <label>
-                    Password:
-                    <input type="text" name="password" placeholder="Password" />
-                </label>
-                <input type="submit" value="Sign in" />
+                <TextField id="username" label="Username" variant="standard"/>
+                <TextField id="password" label="Password" variant="standard" type="password"/>
+                <Button variant="contained" startIcon={<LoginIcon />} type="submit">
+                    Sign in
+                </Button>
             </form>
         </div>
     );
