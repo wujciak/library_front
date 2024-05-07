@@ -8,20 +8,30 @@ import * as yup from 'yup';
 
 function LoginForm() {
     const onSubmit = useCallback(
-        (values: { username: string; password: string}, formik: any) => {console.log(values)}, []
+        (values: { username: string; password: string}) => {
+            console.log(values);
+            }, []
     );
 
-    const validationSchema = useMemo(() => yup.object().shape({
-            username: yup.string().required('Required'),
-            password: yup.string().required('Required').min(5, 'Password must be at least 5 characters'),
-        }), [],);
+    const validationSchema = useMemo(
+        () => yup.object().shape({
+            username: yup
+                .string()
+                .required('Required'),
+            password: yup
+                .string()
+                .required('Required')
+                .min(5, 'Password must be at least 5 characters'),
+        }), []
+    );
 
     return (
-        <Formik initialValues={{ username: '', password: '' }}
-                onSubmit={onSubmit}
-                validationSchema={validationSchema}
-                validateOnChange
-                validateOnBlur
+        <Formik
+            initialValues={{ username: '', password: '' }}
+            onSubmit={onSubmit}
+            validationSchema={validationSchema}
+            validateOnChange
+            validateOnBlur
         >
             {(formik: any) => (
                 <form
@@ -56,7 +66,7 @@ function LoginForm() {
                         startIcon={<LoginIcon/>}
                         type="submit"
                         form="signForm"
-                        disabled={!formik.isValid || !formik.touched.password || !formik.touched.username}
+                        disabled={!(formik.isValid && formik.dirty)}
                     >
                         Sign in
                     </Button>
