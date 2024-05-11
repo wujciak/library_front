@@ -34,7 +34,7 @@ function ListOfBooks() {
                 <thead>
                 <tr>
                     <th>Title</th>
-                    <th className="authorHeader"> <PersonIcon className="PersonIcon"/> Author</th>
+                    <th> <PersonIcon className="PersonIcon"/> Author</th>
                     <th>ISBN</th>
                     <th>Publisher</th>
                     <th>Date of Publish</th>

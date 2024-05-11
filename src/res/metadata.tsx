@@ -6,7 +6,7 @@ export let metadata = [
         author: "Adam Mickiewicz",
         publisher: "Świat Książki",
         dateOfPublish: "2002-12-03",
-        availableCopies: 4
+        availableCopies: 1
     },
     {
         id: 2,
@@ -15,7 +15,7 @@ export let metadata = [
         author: "Adam Mickiewicz",
         publisher: "Świat Książki",
         dateOfPublish: "2003-11-29",
-        availableCopies: 0
+        availableCopies: 12
     },
     {
         id: 3,
@@ -42,6 +42,15 @@ export let metadata = [
         author: "Witold Gombrowicz",
         publisher: "Czytelnik",
         dateOfPublish: "2005-08-15",
-        availableCopies: 6
+        availableCopies: 0
+    },
+    {
+        id: 6,
+        isbn: "ABCDEFGH1234231",
+        name: "Podręcznik do Matematyki",
+        author: "Doe John Doe",
+        publisher: "Nowa Era",
+        dateOfPublish: "2019-08-15",
+        availableCopies: 2
     }
 ];

@@ -1,5 +1,5 @@
 .listOfBooks {
-    background-color: white;
+    background: white;
     margin-top: 10%;
     padding: 5rem;
     display: flex;
@@ -16,7 +16,7 @@
 }
 
 .searchIcon {
-    margin-top: -8px;
+    margin-top: -10px;
     margin-right: 10px;
     font-size: large;
 }
@@ -43,14 +43,13 @@ th, td {
 }
 
 th {
-    background-color: #f2f2f2;
-}
-
-.authorHeader {
-    display: flex;
-    align-items: center;
+    background-color: #5363bd;
 }
 
 tr.unavailable {
-    background-color: #f7cac9;
+    background-color: #acbde4;
+}
+
+.PersonIcon{
+    margin-bottom: -5px;
 }
