@@ -1,0 +1,56 @@
+.listOfBooks {
+    background-color: white;
+    margin-top: 10%;
+    padding: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.searchContainer {
+    display: flex;
+    align-items: center;
+    width: 50%;
+}
+
+.searchIcon {
+    margin-top: -8px;
+    margin-right: 10px;
+    font-size: large;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-bottom: 12px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.authorHeader {
+    display: flex;
+    align-items: center;
+}
+
+tr.unavailable {
+    background-color: #f7cac9;
+}
