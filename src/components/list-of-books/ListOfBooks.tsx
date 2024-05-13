@@ -3,10 +3,27 @@ import './ListOfBooks.css';
 import { metadata } from "../../res/metadata";
 import SearchIcon from '@mui/icons-material/Search';
 import PersonIcon from '@mui/icons-material/Person';
+import TablePagination from '@mui/material/TablePagination';
 
 
 function ListOfBooks() {
     const [searchTerm, setSearchTerm] = useState('');
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(10);
+
+    const handlePageChange = (
+        event: React.MouseEvent<HTMLButtonElement> | null,
+        newPage: number,
+    ) => {
+        setPage(newPage);
+    };
+
+    const handleChangeRowsPerPage = (
+        event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) => {
+        setRowsPerPage(parseInt(event.target.value, 10));
+        setPage(0);
+    };
 
     const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(event.target.value);
@@ -34,7 +51,7 @@ function ListOfBooks() {
                 <thead>
                 <tr>
                     <th>Title</th>
-                    <th> <PersonIcon className="PersonIcon"/> Author</th>
+                    <th><PersonIcon className="PersonIcon"/> Author</th>
                     <th>ISBN</th>
                     <th>Publisher</th>
                     <th>Date of Publish</th>
@@ -42,7 +59,10 @@ function ListOfBooks() {
                 </tr>
                 </thead>
                 <tbody>
-                {filteredBooks.map(book => (
+                {(rowsPerPage > 0
+                        ? filteredBooks.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                        : filteredBooks
+                ).map(book => (
                     <tr key={book.id} className={book.availableCopies === 0 ? "unavailable" : ""}>
                         <td>{book.name}</td>
                         <td>{book.author}</td>
@@ -54,6 +74,14 @@ function ListOfBooks() {
                 ))}
                 </tbody>
             </table>
+            <TablePagination
+                component="div"
+                count={filteredBooks.length}
+                page={page}
+                onPageChange={handlePageChange}
+                rowsPerPage={rowsPerPage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+            />
         </div>
     );
 }
