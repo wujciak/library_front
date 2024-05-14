@@ -1,5 +1,5 @@
-import {useState} from "react";
-import {AppBar, IconButton, Menu, MenuItem, Toolbar, Typography} from "@mui/material";
+import React, {useState} from "react";
+import {AppBar, IconButton, Menu, MenuItem, Toolbar, Typography, Box} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import {AccountCircle} from "@mui/icons-material";
 
@@ -16,7 +16,7 @@ export default function MenuAppBar() {
     };
 
     return (
-        <AppBar position="static">
+        <AppBar position="static" sx={{bgcolor: 'grey'}}>
             <Toolbar>
                 <IconButton
                     size="large"
@@ -24,20 +24,21 @@ export default function MenuAppBar() {
                     color="inherit"
                     aria-label="menu"
                     sx={{mr: 2}}
+                    /* onClick={some menu} */
                 >
                     <MenuIcon/>
                 </IconButton>
                 <Typography variant="h6" color="inherit" component="div" sx={{flexGrow: 1}}>
                     Library Management System
                 </Typography>
-                <div>
+                <Box>
                     <IconButton
                         size="large"
                         aria-label="account of current user"
                         aria-controls="menu-appbar"
                         aria-haspopup="true"
-                        onClick={handleMenu}
                         color="inherit"
+                        onClick={handleMenu}
                         >
                         <AccountCircle/>
                     </IconButton>
@@ -59,7 +60,7 @@ export default function MenuAppBar() {
                         <MenuItem onClick={handleClose}>Profile</MenuItem>
                         <MenuItem onClick={handleClose}>Log Out</MenuItem>
                     </Menu>
-                </div>
+                </Box>
             </Toolbar>
         </AppBar>
     );

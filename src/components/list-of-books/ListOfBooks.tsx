@@ -4,10 +4,6 @@ import { booksData } from "../../res/booksData";
 import SearchIcon from '@mui/icons-material/Search';
 import PersonIcon from '@mui/icons-material/Person';
 import TablePagination from '@mui/material/TablePagination';
-import MenuAppBar from "../app-bar/MenuAppBar";
-import {Box, Button} from "@mui/material";
-import {Link, Outlet} from "react-router-dom";
-
 
 function ListOfBooks() {
     const [searchTerm, setSearchTerm] = useState('');

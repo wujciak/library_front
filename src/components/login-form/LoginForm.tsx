@@ -11,7 +11,7 @@ function LoginForm() {
     const navigate = useNavigate();
 
     const onSubmit = useCallback(
-        (values: { username: string; password: string}) => {
+        () => {
             navigate('/home');
             console.log('/home');
             }, [navigate],
@@ -66,6 +66,7 @@ function LoginForm() {
                         helperText={formik.touched.password && formik.errors.password}
                     />
                     <Button
+                        sx={{bgcolor: 'grey'}}
                         variant="contained"
                         startIcon={<LoginIcon/>}
                         type="submit"

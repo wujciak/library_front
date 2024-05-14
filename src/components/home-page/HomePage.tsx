@@ -13,10 +13,10 @@ function HomePage() {
                     padding: '10px',
                 }}
             >
-                <Button variant="contained" component={Link} to='/books' sx={{m: 1}}>
+                <Button variant="contained" component={Link} to='/books' sx={{m: 1,bgcolor: 'grey'}}>
                     Books
                 </Button>
-                <Button variant="contained" component={Link} to='/loans' sx={{m: 1}}>
+                <Button variant="contained" component={Link} to='/loans' sx={{m: 1,bgcolor: 'grey'}}>
                     Loans
                 </Button>
             </Box>
