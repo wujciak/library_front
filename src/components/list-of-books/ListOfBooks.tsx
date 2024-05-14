@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import './ListOfBooks.css';
-import { metadata } from "../../res/metadata";
+import { booksData } from "../../res/booksData";
 import SearchIcon from '@mui/icons-material/Search';
 import PersonIcon from '@mui/icons-material/Person';
 import TablePagination from '@mui/material/TablePagination';
+import MenuAppBar from "../app-bar/MenuAppBar";
+import {Box, Button} from "@mui/material";
+import {Link, Outlet} from "react-router-dom";
 
 
 function ListOfBooks() {
@@ -29,7 +32,7 @@ function ListOfBooks() {
         setSearchTerm(event.target.value);
     };
 
-    const filteredBooks = metadata.filter(book =>
+    const filteredBooks = booksData.filter(book =>
         book.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         book.isbn.toLowerCase().includes(searchTerm.toLowerCase())
     );

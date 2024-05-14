@@ -1,4 +1,4 @@
-export let metadata = [
+export let booksData = [
     {
         id: 1,
         isbn: "12345ABCD1334",
@@ -96,7 +96,7 @@ export let metadata = [
         author: "George Orwell",
         publisher: "Czytelnik",
         dateOfPublish: "2019-05-01",
-        availableCopies: 7
+        availableCopies: 0
     },
     {
         id: 12,
@@ -123,7 +123,7 @@ export let metadata = [
         author: "Zofia Nałkowska",
         publisher: "Czytelnik",
         dateOfPublish: "2008-09-30",
-        availableCopies: 2
+        availableCopies: 0
     },
     {
         id: 15,
