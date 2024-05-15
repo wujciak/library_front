@@ -43,11 +43,11 @@ th, td {
 }
 
 th {
-    background-color: #6c6b6b;
+    background-color: grey;
 }
 
 tr.unavailable {
-    background-color: #b1b0b0;
+    background-color: lightgray;
 }
 
 .PersonIcon{

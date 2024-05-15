@@ -1,0 +1,29 @@
+.listOfLoans {
+    background: white;
+    margin-top: 5%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: grey;
+}
+
+.PersonIcon{
+    margin-bottom: -5px;
+}
