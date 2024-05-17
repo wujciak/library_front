@@ -15,6 +15,7 @@ function App() {
             <Route path="/home" element={<HomePage/>}/>
             <Route path="/books" element={<ListOfBooks/>}/>
             <Route path="/loans" element={<ListOfLoans/>}/>
+            <Route path="*" element={<h1>Error 404: Page Not Found</h1>}/>
         </Routes>
       </BrowserRouter>
       )

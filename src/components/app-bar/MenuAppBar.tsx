@@ -1,13 +1,12 @@
-import React, {useState} from "react";
-import {AppBar, IconButton, Menu, MenuItem, Toolbar, Typography, Box} from "@mui/material";
+import React, { useState, MouseEvent } from "react";
+import { AppBar, IconButton, Menu, MenuItem, Toolbar, Typography, Box } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import {AccountCircle} from "@mui/icons-material";
+import { AccountCircle } from "@mui/icons-material";
 
-export default function MenuAppBar() {
-    const [anchorEl, setAnchorEl] =
-        useState<null | HTMLElement>(null);
+const MenuAppBar: React.FC = () => {
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
-    const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
+    const handleMenu = (event: MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
 
@@ -16,19 +15,18 @@ export default function MenuAppBar() {
     };
 
     return (
-        <AppBar position="static" sx={{bgcolor: 'grey'}}>
+        <AppBar position="static" sx={{ bgcolor: 'grey' }}>
             <Toolbar>
                 <IconButton
                     size="large"
                     edge="start"
                     color="inherit"
                     aria-label="menu"
-                    sx={{mr: 2}}
-                    /* onClick={some menu} */
+                    sx={{ mr: 2 }}
                 >
-                    <MenuIcon/>
+                    <MenuIcon />
                 </IconButton>
-                <Typography variant="h6" color="inherit" component="div" sx={{flexGrow: 1}}>
+                <Typography variant="h6" color="inherit" component="div" sx={{ flexGrow: 1 }}>
                     Library Management System
                 </Typography>
                 <Box>
@@ -39,8 +37,8 @@ export default function MenuAppBar() {
                         aria-haspopup="true"
                         color="inherit"
                         onClick={handleMenu}
-                        >
-                        <AccountCircle/>
+                    >
+                        <AccountCircle />
                     </IconButton>
                     <Menu
                         id="menu-appbar"
@@ -64,4 +62,6 @@ export default function MenuAppBar() {
             </Toolbar>
         </AppBar>
     );
-}
+};
+
+export default MenuAppBar;
