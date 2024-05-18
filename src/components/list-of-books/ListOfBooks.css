@@ -50,6 +50,12 @@ tr.unavailable {
     background-color: lightgray;
 }
 
-.PersonIcon{
+.PersonIcon {
     margin-bottom: -5px;
+}
+
+@media (max-width: 600px) {
+    .listOfBooks {
+        padding: 1rem;
+    }
 }

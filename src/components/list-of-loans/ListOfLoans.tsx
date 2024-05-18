@@ -16,11 +16,11 @@ import {
 import MenuAppBar from "../app-bar/MenuAppBar";
 import "./ListOfLoans.css";
 
-const ListOfLoans: React.FC = () => {
+function ListOfLoans() {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
 
-    const handlePageChange = (event: MouseEvent<HTMLButtonElement>, newPage: number) => {
+    const handlePageChange = (event: MouseEvent<HTMLButtonElement> | null, newPage: number) => {
         setPage(newPage);
     };
 
@@ -31,8 +31,8 @@ const ListOfLoans: React.FC = () => {
 
     return (
         <Box>
-            <MenuAppBar />
-            <Box sx={{ marginTop: 4, padding: 2 }}>
+            <MenuAppBar/>
+            <Box sx={{marginTop: 4, padding: 2}}>
                 <Typography variant="h4" gutterBottom>
                     List Of Loans
                 </Typography>
@@ -43,7 +43,7 @@ const ListOfLoans: React.FC = () => {
                                 <TableCell>Loan ID</TableCell>
                                 <TableCell>
                                     <Box display="flex" alignItems="center">
-                                        <PersonIcon sx={{ marginRight: 1 }} /> User
+                                        <PersonIcon sx={{marginRight: 1}}/> User
                                     </Box>
                                 </TableCell>
                                 <TableCell>Book</TableCell>
@@ -80,6 +80,6 @@ const ListOfLoans: React.FC = () => {
             </Box>
         </Box>
     );
-};
+}
 
 export default ListOfLoans;
