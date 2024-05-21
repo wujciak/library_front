@@ -5,16 +5,24 @@ import LoginIcon from '@mui/icons-material/Login';
 import {Formik} from 'formik';
 import * as yup from 'yup';
 import {useNavigate} from "react-router-dom";
+import {useApi} from "../../api/ApiProvider";
 
 
 function LoginForm() {
     const navigate = useNavigate();
+    const apiClient = useApi();
 
     const onSubmit = useCallback(
-        () => {
-            navigate('/home');
-            console.log('/home');
-            }, [navigate],
+        (values: { username: string; password:string }, formik: any) => {
+            apiClient.login(values).then((response) => {
+                if (response.success) {
+                    navigate('/home');
+                } else {
+                    formik.setFieldError('username', 'Invalid username or password');
+                }
+            });
+        },
+        [apiClient, navigate],
     );
 
     const validationSchema = useMemo(
@@ -25,7 +33,7 @@ function LoginForm() {
             password: yup
                 .string()
                 .required('Required')
-                .min(5, 'Password must be at least 5 characters'),
+                .min(3, 'Password must be at least 3 characters'),
         }), []
     );
 
