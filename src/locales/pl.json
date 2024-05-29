@@ -1,0 +1,22 @@
+{
+  "Library": "Biblioteka",
+  "Books": "Książki",
+  "Loans": "Wypożyczenia",
+  "Profile": "Profil",
+  "Log Out": "Wyloguj się",
+  "List Of Books": "Lista Książek",
+  "Title": "Tytuł",
+  "Author": "Autor",
+  "Publisher": "Wydawca",
+  "Date of Publish": "Data publikacji",
+  "Available Copies": "Dostępne kopie",
+  "Search books by title or ISBN": "Wyszukaj książki po tytule lub ISBN",
+  "List Of Loans": "Lista Wypożyczeń",
+  "Search loans by user ID or book ID": "Wyszukaj wypożyczenie po ID użytkownika lub ID książki",
+  "Loan ID": "ID Wypożyczenia",
+  "User": "Użytkownik",
+  "Book": "Książka",
+  "Date of Start": "Data rozpoczęcia wypożyczenia",
+  "Date of End": "Data końca wypożyczenia",
+  "Date of Return": "Data zwrotu"
+}

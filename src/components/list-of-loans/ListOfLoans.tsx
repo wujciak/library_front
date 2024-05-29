@@ -17,6 +17,7 @@ import {
 import MenuAppBar from "../app-bar/MenuAppBar";
 import { useApi } from "../../api/ApiProvider";
 import "./ListOfLoans.css";
+import {useTranslation} from "react-i18next";
 
 function ListOfLoans() {
     const [page, setPage] = useState(0);
@@ -24,6 +25,7 @@ function ListOfLoans() {
     const [loans, setLoans] = useState<LoanDTO[]>([]);
     const [searchTerm, setSearchTerm] = useState('');
     const apiClient = useApi();
+    const { t } = useTranslation();
 
     useEffect(() => {
         apiClient.getAllLoans().then(response => {
@@ -58,14 +60,14 @@ function ListOfLoans() {
             <MenuAppBar/>
             <Box sx={{marginTop: 4, padding: 2}}>
                 <Typography variant="h4" gutterBottom>
-                    List Of Loans
+                    {t("List Of Loans")}
                 </Typography>
                 <Box display="flex" alignItems="center" mb={2}>
                     <PersonIcon sx={{marginRight: 1}} />
                     <TextField
                         variant="outlined"
                         fullWidth
-                        placeholder="Search loans by user ID or book ID"
+                        placeholder={t("Search loans by user ID or book ID")}
                         value={searchTerm}
                         onChange={handleSearch}
                     />
@@ -74,16 +76,16 @@ function ListOfLoans() {
                     <Table>
                         <TableHead>
                             <TableRow>
-                                <TableCell>Loan ID</TableCell>
+                                <TableCell>{t("Loan ID")}</TableCell>
                                 <TableCell>
                                     <Box display="flex" alignItems="center">
-                                        <PersonIcon sx={{marginRight: 1}}/> User
+                                        <PersonIcon sx={{marginRight: 1}}/> {t("User")}
                                     </Box>
                                 </TableCell>
-                                <TableCell>Book</TableCell>
-                                <TableCell>Date of Start</TableCell>
-                                <TableCell>Date of End</TableCell>
-                                <TableCell>Date of Return</TableCell>
+                                <TableCell>{t("Book")}</TableCell>
+                                <TableCell>{t("Date of Start")}</TableCell>
+                                <TableCell>{t("Date of End")}</TableCell>
+                                <TableCell>{t("Date of Return")}</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>

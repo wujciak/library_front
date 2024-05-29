@@ -3,11 +3,16 @@ import { AppBar, IconButton, Menu, MenuItem, Toolbar, Typography, Box } from "@m
 import MenuIcon from "@mui/icons-material/Menu";
 import { AccountCircle } from "@mui/icons-material";
 import {useNavigate} from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import i18n from "../../i18n";
+import TranslateIcon from '@mui/icons-material/Translate';
 
 function MenuAppBar()  {
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+    const [anchorElLang, setAnchorElLang] = useState<null | HTMLElement>(null);
     const navigate = useNavigate();
+    const { t} = useTranslation();
 
     const handleNavMenu = (event: MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
@@ -15,6 +20,10 @@ function MenuAppBar()  {
 
     const handleUserMenu = (event: MouseEvent<HTMLElement>) => {
         setAnchorElUser(event.currentTarget);
+    };
+
+    const handleLangMenu = (event: MouseEvent<HTMLElement>) => {
+        setAnchorElLang(event.currentTarget);
     };
 
     const handleCloseNavMenu = () => {
@@ -25,9 +34,18 @@ function MenuAppBar()  {
         setAnchorElUser(null);
     };
 
+    const handleCloseLangMenu = () => {
+        setAnchorElLang(null);
+    };
+
     const handleNavClick = (path: string) => {
         navigate(path);
         handleCloseNavMenu();
+    };
+
+    const changeLanguage = (lng: string) => {
+        i18n.changeLanguage(lng);
+        handleCloseLangMenu();
     };
 
     return (
@@ -59,13 +77,43 @@ function MenuAppBar()  {
                         open={Boolean(anchorElNav)}
                         onClose={handleCloseNavMenu}
                     >
-                        <MenuItem onClick={() => handleNavClick('/books')}>Books</MenuItem>
-                        <MenuItem onClick={() => handleNavClick('/loans')}>Loans</MenuItem>
+                        <MenuItem onClick={() => handleNavClick('/books')}>{t('Books')}</MenuItem>
+                        <MenuItem onClick={() => handleNavClick('/loans')}>{t('Loans')}</MenuItem>
                     </Menu>
                 </Box>
                 <Typography variant="h6" color="inherit" component="div" sx={{ flexGrow: 1 }} onClick={() => handleNavClick('/home')}>
-                    Library Management System
+                    {t('Library')}
                 </Typography>
+                <Box>
+                    <IconButton
+                        size="large"
+                        aria-label="select language"
+                        aria-controls="menu-appbar-lang"
+                        aria-haspopup="true"
+                        color="inherit"
+                        onClick={handleLangMenu}
+                    >
+                        <TranslateIcon />
+                    </IconButton>
+                    <Menu
+                        id="menu-appbar-lang"
+                        anchorEl={anchorElLang}
+                        anchorOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                        }}
+                        keepMounted
+                        transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                        }}
+                        open={Boolean(anchorElLang)}
+                        onClose={handleCloseLangMenu}
+                    >
+                        <MenuItem onClick={() => changeLanguage('en')}>English</MenuItem>
+                        <MenuItem onClick={() => changeLanguage('pl')}>Polski</MenuItem>
+                    </Menu>
+                </Box>
                 <Box>
                     <IconButton
                         size="large"
@@ -92,8 +140,8 @@ function MenuAppBar()  {
                         open={Boolean(anchorElUser)}
                         onClose={handleCloseUserMenu}
                     >
-                        <MenuItem onClick={handleCloseUserMenu}>Profile</MenuItem>
-                        <MenuItem onClick={handleCloseUserMenu}>Log Out</MenuItem>
+                        <MenuItem onClick={handleCloseUserMenu}>{t('Profile')}</MenuItem>
+                        <MenuItem onClick={handleCloseUserMenu}>{t('Log Out')}</MenuItem>
                     </Menu>
                 </Box>
             </Toolbar>

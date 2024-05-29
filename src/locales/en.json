@@ -1,0 +1,22 @@
+{
+  "Library": "Library",
+  "Books": "Books",
+  "Loans": "Loans",
+  "Profile": "Profile",
+  "Log Out": "Log Out",
+  "List Of Books": "List Of Books",
+  "Title": "Title",
+  "Author": "Author",
+  "Publisher": "Publisher",
+  "Date of Publish": "Date of Publish",
+  "Available Copies": "Available Copies",
+  "Search books by title or ISBN": "Search books by title or ISBN",
+  "List Of Loans": "List Of Loans",
+  "Search loans by user ID or book ID": "Search loans by user ID or book ID",
+  "Loan ID": "Loan ID",
+  "User": "User",
+  "Book": "Book",
+  "Date of Start": "Date of Start",
+  "Date of End": "Date of End",
+  "Date of Return": "Date of Return"
+}

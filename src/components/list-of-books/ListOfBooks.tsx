@@ -18,6 +18,7 @@ import {
 } from '@mui/material';
 import MenuAppBar from "../app-bar/MenuAppBar";
 import { useApi } from "../../api/ApiProvider";
+import {useTranslation} from "react-i18next";
 
 function ListOfBooks() {
     const [searchTerm, setSearchTerm] = useState('');
@@ -25,6 +26,7 @@ function ListOfBooks() {
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [books, setBooks] = useState<BookDTO[]>([]);
     const apiClient = useApi();
+    const { t } = useTranslation();
 
     useEffect(() => {
         apiClient.getAllBooks().then(response => {
@@ -59,14 +61,14 @@ function ListOfBooks() {
             <MenuAppBar/>
             <Box sx={{marginTop: 4, padding: 2}}>
                 <Typography variant="h4" gutterBottom>
-                    List Of Books
+                    {t('List Of Books')}
                 </Typography>
                 <Box display="flex" alignItems="center" mb={2}>
                     <SearchIcon sx={{marginRight: 1}} />
                     <TextField
                         variant="outlined"
                         fullWidth
-                        placeholder="Search books by title or ISBN"
+                        placeholder={t("Search books by title or ISBN")}
                         value={searchTerm}
                         onChange={handleSearch}
                     />
@@ -75,16 +77,16 @@ function ListOfBooks() {
                     <Table>
                         <TableHead>
                             <TableRow>
-                                <TableCell>Title</TableCell>
+                                <TableCell>{t("Title")}</TableCell>
                                 <TableCell>
                                     <Box display="flex" alignItems="center">
-                                        <PersonIcon sx={{marginRight: 1}}/> Author
+                                        <PersonIcon sx={{marginRight: 1}}/> {t("Author")}
                                     </Box>
                                 </TableCell>
                                 <TableCell>ISBN</TableCell>
-                                <TableCell>Publisher</TableCell>
-                                <TableCell>Date of Publish</TableCell>
-                                <TableCell>Available Copies</TableCell>
+                                <TableCell>{t("Publisher")}</TableCell>
+                                <TableCell>{t("Date of Publish")}</TableCell>
+                                <TableCell>{t("Available Copies")}</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
