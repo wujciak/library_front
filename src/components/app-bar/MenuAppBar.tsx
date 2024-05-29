@@ -63,7 +63,7 @@ function MenuAppBar()  {
                         <MenuItem onClick={() => handleNavClick('/loans')}>Loans</MenuItem>
                     </Menu>
                 </Box>
-                <Typography variant="h6" color="inherit" component="div" sx={{ flexGrow: 1 }}>
+                <Typography variant="h6" color="inherit" component="div" sx={{ flexGrow: 1 }} onClick={() => handleNavClick('/home')}>
                     Library Management System
                 </Typography>
                 <Box>

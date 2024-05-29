@@ -13,7 +13,7 @@ function LoginForm() {
     const apiClient = useApi();
 
     const onSubmit = useCallback(
-        (values: { username: string; password:string }, formik: any) => {
+        (values: { username: string; password: string }, formik: any) => {
             apiClient.login(values).then((response) => {
                 if (response.success) {
                     navigate('/home');

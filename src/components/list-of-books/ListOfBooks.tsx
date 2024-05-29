@@ -1,6 +1,6 @@
-import React, { useState, ChangeEvent, MouseEvent } from 'react';
+import React, { useState, useEffect, ChangeEvent, MouseEvent } from 'react';
 import './ListOfBooks.css';
-import { booksData } from "../../res/booksData";
+import { BookDTO } from "../../api/dto/book.dto";
 import SearchIcon from '@mui/icons-material/Search';
 import PersonIcon from '@mui/icons-material/Person';
 import {
@@ -17,22 +17,30 @@ import {
     TablePagination
 } from '@mui/material';
 import MenuAppBar from "../app-bar/MenuAppBar";
+import { useApi } from "../../api/ApiProvider";
 
 function ListOfBooks() {
     const [searchTerm, setSearchTerm] = useState('');
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
+    const [books, setBooks] = useState<BookDTO[]>([]);
+    const apiClient = useApi();
 
-    const handlePageChange = (
-        event: MouseEvent<HTMLButtonElement> | null,
-        newPage: number,
-    ) => {
+    useEffect(() => {
+        apiClient.getAllBooks().then(response => {
+            if (response.success && response.data) {
+                setBooks(response.data);
+            } else {
+                console.error('Failed to fetch books');
+            }
+        });
+    }, [apiClient]);
+
+    const handlePageChange = (event: MouseEvent<HTMLButtonElement> | null, newPage: number) => {
         setPage(newPage);
     };
 
-    const handleChangeRowsPerPage = (
-        event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    ) => {
+    const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
@@ -41,9 +49,9 @@ function ListOfBooks() {
         setSearchTerm(event.target.value);
     };
 
-    const filteredBooks = booksData.filter(book =>
-        book.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        book.isbn.toLowerCase().includes(searchTerm.toLowerCase())
+    const filteredBooks = books.filter(book =>
+        book.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        book.isbn?.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     return (
@@ -84,12 +92,12 @@ function ListOfBooks() {
                                     ? filteredBooks.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                     : filteredBooks
                             ).map(book => (
-                                <TableRow key={book.id} className={book.availableCopies === 0 ? "unavailable" : ""}>
-                                    <TableCell>{book.name}</TableCell>
+                                <TableRow key={book.bookId} className={book.availableCopies === 0 ? "unavailable" : ""}>
+                                    <TableCell>{book.title}</TableCell>
                                     <TableCell>{book.author}</TableCell>
                                     <TableCell>{book.isbn}</TableCell>
                                     <TableCell>{book.publisher}</TableCell>
-                                    <TableCell>{book.dateOfPublish}</TableCell>
+                                    <TableCell>{book.yearOfPublish}</TableCell>
                                     <TableCell>{book.availableCopies}</TableCell>
                                 </TableRow>
                             ))}

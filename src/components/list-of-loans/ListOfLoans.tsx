@@ -1,5 +1,5 @@
-import React, { useState, MouseEvent, ChangeEvent } from "react";
-import { loansData } from "../../res/loansData";
+import React, { useState, useEffect, MouseEvent, ChangeEvent } from "react";
+import { LoanDTO } from "../../api/dto/loan.dto";
 import PersonIcon from "@mui/icons-material/Person";
 import TablePagination from "@mui/material/TablePagination";
 import {
@@ -11,23 +11,47 @@ import {
     TableHead,
     TableRow,
     Paper,
-    Typography
+    Typography,
+    TextField
 } from "@mui/material";
 import MenuAppBar from "../app-bar/MenuAppBar";
+import { useApi } from "../../api/ApiProvider";
 import "./ListOfLoans.css";
 
 function ListOfLoans() {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
+    const [loans, setLoans] = useState<LoanDTO[]>([]);
+    const [searchTerm, setSearchTerm] = useState('');
+    const apiClient = useApi();
+
+    useEffect(() => {
+        apiClient.getAllLoans().then(response => {
+            if (response.success && response.data) {
+                setLoans(response.data);
+            } else {
+                console.error('Failed to fetch loans');
+            }
+        });
+    }, [apiClient]);
 
     const handlePageChange = (event: MouseEvent<HTMLButtonElement> | null, newPage: number) => {
         setPage(newPage);
     };
 
-    const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
+
+    const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
+        setSearchTerm(event.target.value);
+    };
+
+    const filteredLoans = loans.filter(loan =>
+        loan.user?.toString().includes(searchTerm) ||
+        loan.book?.toString().includes(searchTerm)
+    );
 
     return (
         <Box>
@@ -36,6 +60,16 @@ function ListOfLoans() {
                 <Typography variant="h4" gutterBottom>
                     List Of Loans
                 </Typography>
+                <Box display="flex" alignItems="center" mb={2}>
+                    <PersonIcon sx={{marginRight: 1}} />
+                    <TextField
+                        variant="outlined"
+                        fullWidth
+                        placeholder="Search loans by user ID or book ID"
+                        value={searchTerm}
+                        onChange={handleSearch}
+                    />
+                </Box>
                 <TableContainer component={Paper}>
                     <Table>
                         <TableHead>
@@ -54,16 +88,17 @@ function ListOfLoans() {
                         </TableHead>
                         <TableBody>
                             {(rowsPerPage > 0
-                                    ? loansData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                    : loansData
+                                    ? filteredLoans.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                    : filteredLoans
                             ).map((loan) => (
                                 <TableRow key={loan.loanId}>
                                     <TableCell>{loan.loanId}</TableCell>
-                                    <TableCell>{loan.user}</TableCell>
-                                    <TableCell>{loan.book}</TableCell>
-                                    <TableCell>{loan.dateOfStart}</TableCell>
-                                    <TableCell>{loan.dateOfEnd}</TableCell>
-                                    <TableCell>{loan.dateOfReturn || "Not Returned"}</TableCell>
+                                    <TableCell>{loan.user?.userId}</TableCell>
+                                    <TableCell>{loan.book?.bookId}</TableCell>
+                                    <TableCell>{loan.dateOfStart?.toString()}</TableCell>
+                                    <TableCell>{loan.dateOfEnd?.toString()}</TableCell>
+                                    <TableCell>{loan.dateOfReturn?.toString()}</TableCell>
+
                                 </TableRow>
                             ))}
                         </TableBody>
@@ -71,10 +106,11 @@ function ListOfLoans() {
                 </TableContainer>
                 <TablePagination
                     component="div"
-                    count={loansData.length}
+                    count={filteredLoans.length}
                     page={page}
                     onPageChange={handlePageChange}
                     rowsPerPage={rowsPerPage}
+                    rowsPerPageOptions={[5, 10, 25]}
                     onRowsPerPageChange={handleChangeRowsPerPage}
                 />
             </Box>

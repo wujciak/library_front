@@ -6,6 +6,7 @@ import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import HomePage from "./components/home-page/HomePage";
 import ListOfLoans from "./components/list-of-loans/ListOfLoans";
 import ApiProvider from "./api/ApiProvider";
+import AdminPanel from "./components/admin-panel/AdminPanel";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
                 <Route path="/home" element={<HomePage/>}/>
                 <Route path="/books" element={<ListOfBooks/>}/>
                 <Route path="/loans" element={<ListOfLoans/>}/>
+                <Route path="/admin" element={<AdminPanel/>}/>
                 <Route path="*" element={<h1>Error 404: Page Not Found</h1>}/>
             </Routes>
           </ApiProvider>
