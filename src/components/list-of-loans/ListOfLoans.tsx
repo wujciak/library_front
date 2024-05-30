@@ -1,6 +1,6 @@
 import React, { useState, useEffect, MouseEvent, ChangeEvent } from "react";
 import { LoanDTO } from "../../api/dto/loan.dto";
-import PersonIcon from "@mui/icons-material/Person";
+import SearchIcon from "@mui/icons-material/Search";
 import TablePagination from "@mui/material/TablePagination";
 import {
     Box,
@@ -18,6 +18,7 @@ import MenuAppBar from "../app-bar/MenuAppBar";
 import { useApi } from "../../api/ApiProvider";
 import "./ListOfLoans.css";
 import {useTranslation} from "react-i18next";
+import PersonIcon from "@mui/icons-material/Person";
 
 function ListOfLoans() {
     const [page, setPage] = useState(0);
@@ -63,7 +64,7 @@ function ListOfLoans() {
                     {t("List Of Loans")}
                 </Typography>
                 <Box display="flex" alignItems="center" mb={2}>
-                    <PersonIcon sx={{marginRight: 1}} />
+                    <SearchIcon sx={{marginRight: 1}} />
                     <TextField
                         variant="outlined"
                         fullWidth

@@ -13,6 +13,8 @@ function AddBookForm() {
             apiClient.createBook(values).then((response) => {
                 if (response.success) {
                     formik.resetForm();
+                } else {
+                    console.error('Failed to create book');
                 }
             });
         },
@@ -20,20 +22,20 @@ function AddBookForm() {
     );
 
     const validationSchema = yup.object().shape({
-        isbn: yup.string().required('ISBN is required'),
         title: yup.string().required('Title is required'),
         author: yup.string().required('Author is required'),
+        isbn: yup.string().required('ISBN is required'),
         publisher: yup.string().required('Publisher is required'),
-        yearOfPublish: yup.number().required('Year of publish is required'),
-        availableCopies: yup.number().required('Available copies is required')
+        yearOfPublish: yup.number().required('Year of publish is required').positive().integer(),
+        availableCopies: yup.number().required('Available copies is required').positive().integer()
     });
 
     return (
         <Formik
             initialValues={{
-                isbn: '',
                 title: '',
                 author: '',
+                isbn: '',
                 publisher: '',
                 yearOfPublish: 0,
                 availableCopies: 0
@@ -41,20 +43,9 @@ function AddBookForm() {
             onSubmit={onSubmit}
             validationSchema={validationSchema}
         >
-            {(formik: any) => (
+            {(formik) => (
                 <form onSubmit={formik.handleSubmit}>
                     <Box display="flex" flexDirection="column" gap={2}>
-                        <TextField
-                            id="isbn"
-                            label="ISBN"
-                            variant="outlined"
-                            name="isbn"
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            value={formik.values.isbn}
-                            error={formik.touched.isbn && !!formik.errors.isbn}
-                            helperText={formik.touched.isbn && formik.errors.isbn}
-                        />
                         <TextField
                             id="title"
                             label="Title"
@@ -76,6 +67,17 @@ function AddBookForm() {
                             value={formik.values.author}
                             error={formik.touched.author && !!formik.errors.author}
                             helperText={formik.touched.author && formik.errors.author}
+                        />
+                        <TextField
+                            id="isbn"
+                            label="ISBN"
+                            variant="outlined"
+                            name="isbn"
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            value={formik.values.isbn}
+                            error={formik.touched.isbn && !!formik.errors.isbn}
+                            helperText={formik.touched.isbn && formik.errors.isbn}
                         />
                         <TextField
                             id="publisher"

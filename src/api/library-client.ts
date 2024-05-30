@@ -2,6 +2,7 @@ import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 import { LoginDTO, LoginResponseDTO } from './dto/login.dto';
 import { BookDTO, CreateBookDTO } from "./dto/book.dto";
 import {CreateLoanDTO, LoanDTO} from "./dto/loan.dto";
+import {CreateUserDTO, UserDTO} from "./dto/user.dto";
 
 export type ClientResponse<T> = {
     success: boolean;
@@ -119,5 +120,42 @@ export class LibraryClient {
             };
         }
     }
+
+    public async getAllUsers(): Promise<ClientResponse<UserDTO[] | null>> {
+        try {
+            const response: AxiosResponse<UserDTO[]> = await this.client.get('/api/user/getAll');
+            return {
+                success: true,
+                data: response.data,
+                statusCode: response.status,
+            };
+        } catch (error) {
+            const axiosError = error as AxiosError<Error>;
+            return {
+                success: false,
+                data: null,
+                statusCode: axiosError.response?.status || 0,
+            };
+        }
+    }
+
+    public async createUser(data: CreateUserDTO): Promise<ClientResponse<UserDTO | null>> {
+        try {
+            const response: AxiosResponse<UserDTO> = await this.client.post('/api/user/create', data);
+            return {
+                success: true,
+                data: response.data,
+                statusCode: response.status,
+            };
+        } catch (error) {
+            const axiosError = error as AxiosError<Error>;
+            return {
+                success: false,
+                data: null,
+                statusCode: axiosError.response?.status || 0,
+            };
+        }
+    }
+
 
 }
