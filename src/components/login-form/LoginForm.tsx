@@ -15,12 +15,14 @@ function LoginForm() {
     const onSubmit = useCallback(
         (values: { username: string; password: string }, formik: any) => {
             apiClient.login(values).then((response) => {
-                if (response.success) {
+                if (response.success && response.data && response.data.token) {
+                    localStorage.setItem('token', response.data.token);
                     navigate('/home');
                 } else {
                     formik.setFieldError('username', 'Invalid username or password');
                 }
             });
+
         },
         [apiClient, navigate],
     );

@@ -67,7 +67,22 @@ export class LibraryClient {
 
     public async createBook(data: CreateBookDTO): Promise<ClientResponse<BookDTO | null>> {
         try {
-            const response: AxiosResponse<BookDTO> = await this.client.post('/api/book/create', data);
+            const token = localStorage.getItem('token');
+            if (!token) {
+                console.error('Token not found');
+                return {
+                    success: false,
+                    data: null,
+                    statusCode: 0,
+                };
+            }
+
+            const response: AxiosResponse<BookDTO> = await this.client.post('/api/book/create', data, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+
             return {
                 success: true,
                 data: response.data,
@@ -82,6 +97,8 @@ export class LibraryClient {
             };
         }
     }
+
+
 
     public async getAllLoans(): Promise<ClientResponse<LoanDTO[] | null>> {
         try {

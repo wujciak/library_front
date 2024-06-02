@@ -6,9 +6,11 @@ import {useTranslation} from "react-i18next";
 
 function HomePage() {
     const { t } = useTranslation();
+    const isAdmin = localStorage.getItem('role') === 'admin';
+
     return (
-        <Box sx={{flexGrow: 1}}>
-            <MenuAppBar/>
+        <Box sx={{ flexGrow: 1 }}>
+            <MenuAppBar isAdmin={isAdmin} />
             <Box
                 sx={{
                     display: 'flex',
@@ -16,14 +18,19 @@ function HomePage() {
                     padding: '10px',
                 }}
             >
-                <Button variant="contained" component={Link} to='/books' sx={{m: 1,bgcolor: 'grey'}}>
+                <Button variant="contained" component={Link} to="/books" sx={{ m: 1, bgcolor: 'grey' }}>
                     {t('Books')}
                 </Button>
-                <Button variant="contained" component={Link} to='/loans' sx={{m: 1,bgcolor: 'grey'}}>
+                <Button variant="contained" component={Link} to="/loans" sx={{ m: 1, bgcolor: 'grey' }}>
                     {t('Loans')}
                 </Button>
+                {isAdmin && (
+                    <Button variant="contained" component={Link} to="/admin" sx={{ m: 1, bgcolor: 'grey' }}>
+                        {t('Admin Panel')}
+                    </Button>
+                )}
             </Box>
-            <Outlet/>
+            <Outlet />
         </Box>
     );
 }
