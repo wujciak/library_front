@@ -5,11 +5,7 @@ import AddBookForm from "../add-book-form/AddBookForm";
 import AddUserForm from "../add-user-form/AddUserForm";
 import { useTranslation } from "react-i18next";
 
-interface AdminPanelProps {
-    isAdmin: boolean;
-}
-
-function AdminPanel({ isAdmin }: AdminPanelProps) {
+function AdminPanel() {
     const { t } = useTranslation();
 
     return (

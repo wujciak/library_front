@@ -11,8 +11,6 @@ import { I18nextProvider } from "react-i18next";
 import i18n from './i18n';
 
 function App() {
-    const isAdmin = localStorage.getItem('role') === 'admin';
-
     return (
         <BrowserRouter>
             <I18nextProvider i18n={i18n}>
@@ -23,7 +21,7 @@ function App() {
                         <Route path="/home" element={<HomePage/>}/>
                         <Route path="/books" element={<ListOfBooks/>}/>
                         <Route path="/loans" element={<ListOfLoans/>}/>
-                        <Route path="/admin" element={<AdminPanel isAdmin={isAdmin}/>}/>
+                        <Route path="/admin" element={<AdminPanel/>}/>
                         <Route path="*" element={<h1>Error 404: Page Not Found</h1>}/>
                     </Routes>
                 </ApiProvider>

@@ -17,6 +17,11 @@ export class LibraryClient {
         this.client = axios.create({
             baseURL: 'http://localhost:8080',
         });
+
+        const token = localStorage.getItem('token');
+        if (token) {
+            this.client.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        }
     }
 
     public async login(data: LoginDTO): Promise<ClientResponse<LoginResponseDTO | null>> {
@@ -56,6 +61,8 @@ export class LibraryClient {
             };
         } catch (error) {
             const axiosError = error as AxiosError<Error>;
+
+            console.error('Error fetching books:', axiosError);
 
             return {
                 success: false,

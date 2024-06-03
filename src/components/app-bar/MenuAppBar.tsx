@@ -7,11 +7,7 @@ import { useTranslation } from "react-i18next";
 import i18n from "../../i18n";
 import TranslateIcon from '@mui/icons-material/Translate';
 
-interface MenuAppBarProps {
-    isAdmin?: boolean;
-}
-
-function MenuAppBar({ isAdmin }: MenuAppBarProps) {
+function MenuAppBar() {
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
     const [anchorElLang, setAnchorElLang] = useState<null | HTMLElement>(null);
@@ -52,11 +48,6 @@ function MenuAppBar({ isAdmin }: MenuAppBarProps) {
         handleCloseLangMenu();
     };
 
-    const handleAdminClick = () => {
-        navigate('/admin');
-        handleCloseNavMenu();
-    };
-
     return (
         <AppBar position="static" sx={{ bgcolor: 'grey' }}>
             <Toolbar>
@@ -88,7 +79,7 @@ function MenuAppBar({ isAdmin }: MenuAppBarProps) {
                     >
                         <MenuItem onClick={() => handleNavClick('/books')}>{t('Books')}</MenuItem>
                         <MenuItem onClick={() => handleNavClick('/loans')}>{t('Loans')}</MenuItem>
-                        {isAdmin && <MenuItem onClick={handleAdminClick}>{t('Admin Panel')}</MenuItem>}
+                        <MenuItem onClick={() => handleNavClick('/admin')}>{t('Admin Panel')}</MenuItem>
                     </Menu>
                 </Box>
                 <Typography variant="h6" color="inherit" component="div" sx={{ flexGrow: 1 }} onClick={() => handleNavClick('/home')}>
