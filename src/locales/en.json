@@ -18,5 +18,14 @@
   "Book": "Book",
   "Date of Start": "Date of Start",
   "Date of End": "Date of End",
-  "Date of Return": "Date of Return"
+  "Date of Return": "Date of Return",
+  "Admin Panel": "Admin Panel",
+  "Add Book Form": "Add Book Form",
+  "Add User Form": "Add User Form",
+  "Title is required": "Title is required",
+  "Year of Publish": "Year of Publish",
+  "Name": "Name",
+  "Age": "Age",
+  "Add User": "Add User",
+  "Add Book": "Add Book"
 }

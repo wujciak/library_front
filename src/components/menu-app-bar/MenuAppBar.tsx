@@ -142,7 +142,7 @@ function MenuAppBar() {
                         onClose={handleCloseUserMenu}
                     >
                         <MenuItem onClick={handleCloseUserMenu}>{t('Profile')}</MenuItem>
-                        <MenuItem onClick={handleCloseUserMenu}>{t('Log Out')}</MenuItem>
+                        <MenuItem onClick={() => handleNavClick('/login')}>{t('Log Out')}</MenuItem>
                     </Menu>
                 </Box>
             </Toolbar>

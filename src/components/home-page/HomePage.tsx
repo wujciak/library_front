@@ -1,5 +1,5 @@
 import {Box, Button} from "@mui/material";
-import MenuAppBar from "../app-bar/MenuAppBar";
+import MenuAppBar from "../menu-app-bar/MenuAppBar";
 import {Link, Outlet} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 

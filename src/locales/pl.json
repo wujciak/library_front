@@ -18,5 +18,14 @@
   "Book": "Książka",
   "Date of Start": "Data rozpoczęcia wypożyczenia",
   "Date of End": "Data końca wypożyczenia",
-  "Date of Return": "Data zwrotu"
+  "Date of Return": "Data zwrotu",
+  "Admin Panel": "Panel Admina",
+  "Add Book Form": "Dodaj książkę",
+  "Add User Form": "Dodaj użytkownika",
+  "Title is required": "Tytuł jest wymagany",
+  "Year of Publish": "Rok publikacji",
+  "Name": "Imię",
+  "Age": "Wiek",
+  "Add User": "Dodaj",
+  "Add Book": "Dodaj"
 }

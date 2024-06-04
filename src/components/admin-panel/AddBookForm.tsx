@@ -4,9 +4,11 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import { useApi } from '../../api/ApiProvider';
 import { CreateBookDTO } from '../../api/dto/book.dto';
+import {useTranslation} from "react-i18next";
 
 function AddBookForm() {
     const apiClient = useApi();
+    const { t } = useTranslation();
 
     const onSubmit = useCallback(
         (values: CreateBookDTO, formik: any) => {
@@ -37,7 +39,7 @@ function AddBookForm() {
                 author: '',
                 isbn: '',
                 publisher: '',
-                yearOfPublish: 0,
+                yearOfPublish: 2020,
                 availableCopies: 0
             }}
             onSubmit={onSubmit}
@@ -48,7 +50,7 @@ function AddBookForm() {
                     <Box display="flex" flexDirection="column" gap={2}>
                         <TextField
                             id="title"
-                            label="Title"
+                            label={t("Title")}
                             variant="outlined"
                             name="title"
                             onChange={formik.handleChange}
@@ -59,7 +61,7 @@ function AddBookForm() {
                         />
                         <TextField
                             id="author"
-                            label="Author"
+                            label={t("Author")}
                             variant="outlined"
                             name="author"
                             onChange={formik.handleChange}
@@ -81,7 +83,7 @@ function AddBookForm() {
                         />
                         <TextField
                             id="publisher"
-                            label="Publisher"
+                            label={t("Publisher")}
                             variant="outlined"
                             name="publisher"
                             onChange={formik.handleChange}
@@ -92,7 +94,7 @@ function AddBookForm() {
                         />
                         <TextField
                             id="yearOfPublish"
-                            label="Year of Publish"
+                            label={t("Year of Publish")}
                             variant="outlined"
                             name="yearOfPublish"
                             type="number"
@@ -104,7 +106,7 @@ function AddBookForm() {
                         />
                         <TextField
                             id="availableCopies"
-                            label="Available Copies"
+                            label={t("Available Copies")}
                             variant="outlined"
                             name="availableCopies"
                             type="number"
@@ -115,7 +117,7 @@ function AddBookForm() {
                             helperText={formik.touched.availableCopies && formik.errors.availableCopies}
                         />
                         <Button type="submit" variant="contained" color="primary">
-                            Add Book
+                            {t("Add Book")}
                         </Button>
                     </Box>
                 </form>

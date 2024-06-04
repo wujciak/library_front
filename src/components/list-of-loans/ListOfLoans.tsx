@@ -14,7 +14,7 @@ import {
     Typography,
     TextField
 } from "@mui/material";
-import MenuAppBar from "../app-bar/MenuAppBar";
+import MenuAppBar from "../menu-app-bar/MenuAppBar";
 import { useApi } from "../../api/ApiProvider";
 import "./ListOfLoans.css";
 import {useTranslation} from "react-i18next";

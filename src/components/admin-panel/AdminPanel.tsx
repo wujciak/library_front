@@ -1,9 +1,10 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
-import MenuAppBar from "../app-bar/MenuAppBar";
-import AddBookForm from "../add-book-form/AddBookForm";
-import AddUserForm from "../add-user-form/AddUserForm";
+import MenuAppBar from "../menu-app-bar/MenuAppBar";
+import AddBookForm from "./AddBookForm";
+import AddUserForm from "./AddUserForm";
 import { useTranslation } from "react-i18next";
+import AddLoanForm from "./AddLoanForm";
 
 function AdminPanel() {
     const { t } = useTranslation();
@@ -17,6 +18,10 @@ function AdminPanel() {
                     <Box>
                         <Typography variant="h5">{t('Add Book Form')}</Typography>
                         <AddBookForm />
+                    </Box>
+                    <Box>
+                        <Typography variant="h5">{t('Add Loan Form')}</Typography>
+                        <AddLoanForm />
                     </Box>
                     <Box>
                         <Typography variant="h5">{t('Add User Form')}</Typography>

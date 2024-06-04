@@ -4,9 +4,11 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import { useApi } from '../../api/ApiProvider';
 import { CreateUserDTO } from '../../api/dto/user.dto';
+import {useTranslation} from "react-i18next";
 
 function AddUserForm() {
     const apiClient = useApi();
+    const { t } = useTranslation();
 
     const onSubmit = useCallback(
         (values: CreateUserDTO, formik: any) => {
@@ -31,7 +33,7 @@ function AddUserForm() {
         <Formik
             initialValues={{
                 name: '',
-                age: 0,
+                age: 20,
                 email: ''
             }}
             onSubmit={onSubmit}
@@ -42,7 +44,7 @@ function AddUserForm() {
                     <Box display="flex" flexDirection="column" gap={2}>
                         <TextField
                             id="name"
-                            label="Name"
+                            label={t("Name")}
                             variant="outlined"
                             name="name"
                             onChange={formik.handleChange}
@@ -53,7 +55,7 @@ function AddUserForm() {
                         />
                         <TextField
                             id="age"
-                            label="Age"
+                            label={t("Age")}
                             variant="outlined"
                             name="age"
                             type="number"
@@ -65,7 +67,7 @@ function AddUserForm() {
                         />
                         <TextField
                             id="email"
-                            label="Email"
+                            label={t("Email")}
                             variant="outlined"
                             name="email"
                             onChange={formik.handleChange}
@@ -75,7 +77,7 @@ function AddUserForm() {
                             helperText={formik.touched.email && formik.errors.email}
                         />
                         <Button type="submit" variant="contained" color="primary">
-                            Add User
+                            {t("Add User")}
                         </Button>
                     </Box>
                 </form>
