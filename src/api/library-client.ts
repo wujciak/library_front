@@ -105,8 +105,6 @@ export class LibraryClient {
         }
     }
 
-
-
     public async getAllLoans(): Promise<ClientResponse<LoanDTO[] | null>> {
         try {
             const response: AxiosResponse<LoanDTO[]> = await this.client.get('/api/loan/getAll');
@@ -180,6 +178,5 @@ export class LibraryClient {
             };
         }
     }
-
 
 }

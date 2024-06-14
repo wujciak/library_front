@@ -13,24 +13,28 @@ function AddLoanForm() {
     const { t } = useTranslation();
 
     const onSubmit = useCallback(
-        (values: any, formik: any) => {
-            const book = { title: values.bookTitle } as Book;
-            const user = { name: values.username } as User;
-            const loan: CreateLoanDTO = {
-                book,
-                user,
-                dateOfStart: values.dateOfStart,
-                dateOfEnd: values.dateOfEnd,
-                dateOfReturn: values.dateOfReturn
-            };
+        async (values: any, formik: any) => {
+            try {
+                const book = { title: values.bookTitle } as Book;
+                const user = { name: values.username } as User;
+                const loan: CreateLoanDTO = {
+                    book,
+                    user,
+                    dateOfStart: values.dateOfStart,
+                    dateOfEnd: values.dateOfEnd,
+                    dateOfReturn: values.dateOfReturn || undefined,
+                };
 
-            apiClient.createLoan(loan).then((response) => {
+                const response = await apiClient.createLoan(loan);
+
                 if (response.success) {
                     formik.resetForm();
                 } else {
-                    console.error('Failed to create loan');
+                    console.error('Failed to create loan:', response.statusCode);
                 }
-            });
+            } catch (error) {
+                console.error('Error creating loan:', error);
+            }
         },
         [apiClient]
     );
@@ -40,7 +44,7 @@ function AddLoanForm() {
         username: yup.string().required('Username is required'),
         dateOfStart: yup.date().required('Start date is required'),
         dateOfEnd: yup.date().required('End date is required'),
-        dateOfReturn: yup.date().notRequired()
+        dateOfReturn: yup.date().nullable(),
     });
 
     return (
